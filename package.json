@@ -1,0 +1,31 @@
+{
+  "name": "generate-commit",
+  "version": "1.0.0",
+  "description": "cli tool for generating commits",
+  "bin": {
+    "generate-commit": "./bin/generate-commit.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettify": "prettier --write ."
+  },
+  "author": "derrick njeru",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.13.0",
+    "@types/yargs": "^13.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "eslint": "^8.34.0",
+    "eslint-config-standard-with-typescript": "^34.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "2.8.4",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "yargs": "^17.6.2"
+  }
+}
