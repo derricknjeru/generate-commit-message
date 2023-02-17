@@ -1,4 +1,5 @@
 import yargs from "yargs";
+import { getStagedFiles, getStagedChanges } from "./utils/git";
 
 export const main = async () => {
   // Define the expected command-line arguments
@@ -21,6 +22,10 @@ export const main = async () => {
 
   if (verbose) {
     console.log(`Verbose mode enabled.`);
+
+    // Log the staged files
+    console.log(`Staged files:\n ${getStagedFiles()}`);
+    console.log(`Staged changes:\n ${getStagedChanges()}`);
   }
 };
 
