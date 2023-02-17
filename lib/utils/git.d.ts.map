@@ -1,1 +1,1 @@
-{"version":3,"file":"git.d.ts","sourceRoot":"","sources":["../../src/utils/git.ts"],"names":[],"mappings":"AAUA,wBAAgB,gBAAgB,WAI/B;AASD,wBAAgB,kBAAkB,SAUjC;AAED,wBAAgB,gBAAgB,SAE/B"}
+{"version":3,"file":"git.d.ts","sourceRoot":"","sources":["../../src/utils/git.ts"],"names":[],"mappings":"AAWA,wBAAgB,gBAAgB,WAI/B;AASD,wBAAgB,kBAAkB,SAUjC;AAED,wBAAgB,UAAU,SAEzB;AAED,wBAAgB,mBAAmB,CAAC,aAAa,EAAE,MAAM,QAGxD"}

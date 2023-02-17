@@ -2,12 +2,13 @@ import yargs from "yargs";
 import {
   displayStagedFiles,
   getStagedChanges,
-  addStagedChanges,
+  addChanges,
+  commitStagedChanges,
 } from "./utils/git";
 import { generateMessage } from "./utils/openai";
-import { selectCommit } from "./utils/commit-selector";
+import { selectCommit, commitMessage } from "./utils/commit-selector";
 
-const sanitizeMessage = (message: any) =>
+const sanitizeMessage = (message: string) =>
   message
     .trim()
     .replace(/[\n\r]/g, "")
@@ -21,11 +22,11 @@ export const main = async () => {
     verbose: { type: "boolean", default: false, alias: "v" },
   }).argv;
 
-  const { add, generate, verbose } = options;
+  const { add, generate } = options;
 
   if (add) {
     console.log(`Adding changes...`);
-    addStagedChanges();
+    addChanges();
   }
 
   if (generate) {
@@ -33,7 +34,7 @@ export const main = async () => {
   }
 
   function generateCommitMessage() {
-    console.log(`Detecting staged changes...\n`);
+    console.log(`\n Detecting staged changes...\n`);
 
     displayStagedFiles();
 
@@ -43,17 +44,28 @@ export const main = async () => {
       console.log(`\nGenerating commit message...\n`);
       generateMessage(diff)
         .then((response) => {
-          //console.log(response.data);
           const choices = response.data.choices.map((choice: any) =>
-          //replace "Commit: " with "" to remove the prefix
+            //replace "Commit: " with "" to remove the prefix
             sanitizeMessage(choice.text.replace("Commit: ", ""))
           );
-          selectCommit(choices).then((commit: any) => {
-            console.log(`\n Selected commit message: ${commit}`);
+          selectCommit(choices).then((commit: string) => {
+            commitMessage().then((shouldCommit: boolean) => {
+              if (shouldCommit) {
+                console.log(`\nCommitting changes...`);
+                commitStagedChanges(commit);
+
+              } else {
+                console.log(`\nAborting commit...`);
+              }
+            });
           });
         })
         .catch((error) => {
-          console.error(error);
+          if (error.response) {
+            console.error(error.response.data.error.message);
+          } else {
+            console.error(`Error with OpenAI API request: ${error.message}`);
+          }
         });
     } else {
       console.log(`No staged changes detected.`);

@@ -23,16 +23,10 @@ export const generateMessage = async (diff: string) => {
     });
     return response;
   } catch (error: any) {
-    if (error.response) {
-      console.error(error.response.status, error.response.data);
-    } else {
-      console.error(`Error with OpenAI API request: ${error.message}`);
-    }
     throw error;
   }
 };
 
 function generatePrompt(diff: string) {
-  return `Suggest one insightful and concise
-  commit message for the following diff ${diff}, please use imperative mood and do not paraphrase the diff or use the diff as the commit message. Also, please do not preface the commit message with "Commit:"`;
+  return `Generate a git commit message for the following diff: \n\n${diff}\n\n , Don't paraphrase the diff. Commit messages should be in the imperative mood, e.g. "Fix bug" and not "Fixed bug" or "Fixes bug." Commit messages should be as short as possible, while still fully explaining the change. \n\nCommit:`;
 }

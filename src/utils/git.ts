@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { execSync } from "child_process";
 
 const excludeDiffFiles: string[] = [
@@ -26,13 +27,18 @@ export function displayStagedFiles() {
   if (stagedFiles) {
     console.log(`Changes to be committed:`);
     stagedFiles.forEach((file) => {
-      console.log(`\t ${file}`);
+      console.log(chalk.green(`\t ${file}`));
     });
   } else {
     console.log(`No staged files.`);
   }
 }
 
-export function addStagedChanges() {
+export function addChanges() {
   execSync(`git add .`);
+}
+
+export function commitStagedChanges(commitMessage: string) {
+  execSync(`git commit -m "${commitMessage}"`);
+  console.log(`\nChanges have been committed.`);
 }
