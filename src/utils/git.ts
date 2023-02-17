@@ -14,10 +14,25 @@ export function getStagedChanges() {
     .trim();
 }
 
-export function getStagedFiles() {
-  return execSync(
-    `git diff --staged --name-only`
-  )
+function getStagedFiles() {
+  return execSync(`git diff --staged --name-only`)
     .toString()
-    .trim();
+    .trim()
+    .split("\n");
+}
+
+export function displayStagedFiles() {
+  const stagedFiles = getStagedFiles();
+  if (stagedFiles) {
+    console.log(`Changes to be committed:`);
+    stagedFiles.forEach((file) => {
+      console.log(`\t ${file}`);
+    });
+  } else {
+    console.log(`No staged files.`);
+  }
+}
+
+export function addStagedChanges() {
+  execSync(`git add .`);
 }

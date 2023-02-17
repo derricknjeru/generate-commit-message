@@ -1,31 +1,63 @@
 import yargs from "yargs";
-import { getStagedFiles, getStagedChanges } from "./utils/git";
+import {
+  displayStagedFiles,
+  getStagedChanges,
+  addStagedChanges,
+} from "./utils/git";
+import { generateMessage } from "./utils/openai";
+import { selectCommit } from "./utils/commit-selector";
+
+const sanitizeMessage = (message: any) =>
+  message
+    .trim()
+    .replace(/[\n\r]/g, "")
+    .replace(/(\w)\.$/, "$1");
 
 export const main = async () => {
   // Define the expected command-line arguments
   const options = yargs(process.argv.slice(2)).options({
-    create: { type: "string", default: undefined, alias: "c" },
+    add: { type: "boolean", default: false, alias: "a" },
     generate: { type: "boolean", default: false, alias: "g" },
     verbose: { type: "boolean", default: false, alias: "v" },
   }).argv;
 
-  const { create, generate, verbose } = options;
+  const { add, generate, verbose } = options;
 
-  // Log the values of the command-line arguments
-  if (create) {
-    console.log(`Creating ${options.create}`);
+  if (add) {
+    console.log(`Adding changes...`);
+    addStagedChanges();
   }
 
   if (generate) {
-    console.log(`Generating ${options.generate} files`);
+    generateCommitMessage();
   }
 
-  if (verbose) {
-    console.log(`Verbose mode enabled.`);
+  function generateCommitMessage() {
+    console.log(`Detecting staged changes...\n`);
 
-    // Log the staged files
-    console.log(`Staged files:\n ${getStagedFiles()}`);
-    console.log(`Staged changes:\n ${getStagedChanges()}`);
+    displayStagedFiles();
+
+    const diff = getStagedChanges();
+
+    if (diff) {
+      console.log(`\nGenerating commit message...\n`);
+      generateMessage(diff)
+        .then((response) => {
+          //console.log(response.data);
+          const choices = response.data.choices.map((choice: any) =>
+          //replace "Commit: " with "" to remove the prefix
+            sanitizeMessage(choice.text.replace("Commit: ", ""))
+          );
+          selectCommit(choices).then((commit: any) => {
+            console.log(`\n Selected commit message: ${commit}`);
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      console.log(`No staged changes detected.`);
+    }
   }
 };
 
