@@ -1,5 +1,5 @@
 {
-  "name": "g-commit",
+  "name": "generate-commit",
   "version": "1.0.0",
   "description": "cli tool for generating commits",
   "bin":"dist/index.js",
