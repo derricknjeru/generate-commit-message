@@ -6,4 +6,5 @@ prettierrc.js
 webpack.config.js
 /lib/
 .env
+readme.md
 ```
