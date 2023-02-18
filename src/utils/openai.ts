@@ -28,5 +28,5 @@ export const generateMessage = async (diff: string) => {
 };
 
 function generatePrompt(diff: string) {
-  return `Generate a git commit message for the following diff: \n\n${diff}\n\n , Don't paraphrase the diff. Commit messages should be in the imperative mood, e.g. "Fix bug" and not "Fixed bug" or "Fixes bug." Commit messages should be as short as possible, while still fully explaining the change. \n\nCommit:`;
+  return `Write an insightful but concise git commit message for the following diff: \n\n${diff}\n\n , Don't paraphrase the diff and the commit messages should be in the imperative mood, e.g. "Fix bug" and not "Fixed bug" or "Fixes bug." `;
 }
