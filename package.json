@@ -1,5 +1,5 @@
 {
-  "name": "generate-commit",
+  "name": "generate-commit-message",
   "version": "1.0.0",
   "description": "cli tool for generating commits",
   "bin": {
