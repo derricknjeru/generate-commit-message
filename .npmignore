@@ -1,10 +1,11 @@
 /src/
 /node_modules/
 /tsconfig.json
-eslintrc.js
-prettierrc
+.prettierrc
 webpack.config.js
 lib
 .env
 README.md
-prettierignore
+.prettierignore
+.eslintrc.js
+/art/
