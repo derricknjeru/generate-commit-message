@@ -1,12 +1,13 @@
 import yargs from "yargs";
 import {
-  displayStagedFiles,
+  getStagedFiles,
   getStagedChanges,
   addChanges,
   commitStagedChanges,
 } from "./utils/git";
 import { generateMessage } from "./utils/openai";
 import { selectCommit, commitMessage } from "./utils/commit-selector";
+import chalk from "chalk";
 
 const sanitizeMessage = (message: string) =>
   message
@@ -34,9 +35,17 @@ export const main = async () => {
   }
 
   function generateCommitMessage() {
-    console.log(`\n Detecting staged changes...\n`);
+    const stagedFiles = getStagedFiles();
 
-    displayStagedFiles();
+    if (stagedFiles) {
+      console.log(`Changes to be committed:`);
+      stagedFiles.split("\n").forEach((file) => {
+        console.log(chalk.green(`\t ${file}`));
+      });
+    } else {
+      console.log(`No staged files.`);
+      return;
+    }
 
     const diff = getStagedChanges();
 
@@ -53,7 +62,6 @@ export const main = async () => {
               if (shouldCommit) {
                 console.log(`\nCommitting changes...`);
                 commitStagedChanges(commit);
-
               } else {
                 console.log(`\nAborting commit...`);
               }

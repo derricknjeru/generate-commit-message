@@ -15,23 +15,10 @@ export function getStagedChanges() {
     .trim();
 }
 
-function getStagedFiles() {
+export function getStagedFiles() {
   return execSync(`git diff --staged --name-only`)
     .toString()
     .trim()
-    .split("\n");
-}
-
-export function displayStagedFiles() {
-  const stagedFiles = getStagedFiles();
-  if (stagedFiles) {
-    console.log(`Changes to be committed:`);
-    stagedFiles.forEach((file) => {
-      console.log(chalk.green(`\t ${file}`));
-    });
-  } else {
-    console.log(`No staged files.`);
-  }
 }
 
 export function addChanges() {
