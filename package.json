@@ -2,7 +2,9 @@
   "name": "generate-commit",
   "version": "1.0.0",
   "description": "cli tool for generating commits",
-  "bin":"dist/index.js",
+  "bin": {
+    "g-commit": "./bin/g-commit.js"
+  },
   "scripts": {
     "build": "tsc && webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
