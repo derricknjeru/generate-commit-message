@@ -14,7 +14,7 @@
 
    > Note: If you have not done so yet, you will need to register an account with OpenAI.
 
-3. Set the key so aicommits can use it:
+3. Set openai key
 
    ```sh
    echo "OPENAI_API_KEY=<your token>" >> .env
