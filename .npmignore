@@ -3,4 +3,7 @@
 /tsconfig.json
 eslintrc.js
 prettierrc.js
+webpack.config.js
+/lib/
+
 ```
