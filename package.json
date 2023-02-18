@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "cli tool for generating commits",
   "bin": {
-    "gc": "./bin/index.js"
+    "g-commit": "./bin/index.js"
   },
   "main": "index.js",
   "scripts": {
