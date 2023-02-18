@@ -24,10 +24,10 @@
 1. Generating commit messages:
 
    ```sh
-   gc --g
+   gc -g
    ```
 2. Staging changes
 
    ```sh
-   gc --g
+   gc -a
    ```
