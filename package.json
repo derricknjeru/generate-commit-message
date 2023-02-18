@@ -1,11 +1,8 @@
 {
-  "name": "generate-commit",
+  "name": "g-commit",
   "version": "1.0.0",
   "description": "cli tool for generating commits",
-  "bin": {
-    "g-commit": "./bin/index.js"
-  },
-  "main": "dist/index.js",
+  "bin":"./bin/index.js",
   "scripts": {
     "build": "tsc && webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -33,6 +30,7 @@
   },
   "dependencies": {
     "dotenv": "^16.0.3",
+    "generate-commit": "^1.0.0",
     "inquirer": "^9.1.4",
     "openai": "^3.1.0",
     "yargs": "^17.6.2"
