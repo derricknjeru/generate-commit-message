@@ -15,10 +15,12 @@ export function getStagedChanges() {
     .trim();
 }
 
+export function getUnfilteredStagedChanges() {
+  return execSync(`git diff --staged`).toString().trim();
+}
+
 export function getStagedFiles() {
-  return execSync(`git diff --staged --name-only`)
-    .toString()
-    .trim()
+  return execSync(`git diff --staged --name-only`).toString().trim();
 }
 
 export function addChanges() {

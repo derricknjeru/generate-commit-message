@@ -4,6 +4,7 @@ import {
   getStagedChanges,
   addChanges,
   commitStagedChanges,
+  getUnfilteredStagedChanges,
 } from "./utils/git";
 import { generateMessage } from "./utils/openai";
 import { selectCommit, commitMessage } from "./utils/commit-selector";
@@ -47,7 +48,10 @@ export const main = async () => {
       return;
     }
 
-    const diff = getStagedChanges();
+    let diff = getStagedChanges();
+    if (!diff && stagedFiles) {
+      diff = getUnfilteredStagedChanges();
+    }
 
     if (diff) {
       console.log(`\nGenerating commit message...\n`);
@@ -76,7 +80,10 @@ export const main = async () => {
           }
         });
     } else {
-      console.log(`No staged changes detected.`);
+      if (stagedFiles) {
+      } else {
+        console.log(`No staged changes.`);
+      }
     }
   }
 };
