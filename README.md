@@ -1,4 +1,4 @@
-# generate-commit
+# generate-commit message
 
 ## <img src="https://github.com/derricknjeru/generate-commit-message/blob/main/art/home.png" height="500">
 
