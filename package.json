@@ -2,6 +2,15 @@
   "name": "generate-commit-message",
   "version": "1.0.7",
   "description": "cli tool for generating commit messages",
+  "keywords": [
+    "ai",
+    "git",
+    "openai",
+    "commit message",
+    "generate commit",
+    "commit message generator",
+    "generate commit message"
+  ],
   "homepage": "https://github.com/derricknjeru/generate-commit-message#readme",
   "repository": {
     "type": "git",
