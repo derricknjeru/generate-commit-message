@@ -1,6 +1,6 @@
 # generate-commit
-<img src="https://github.com/derricknjeru/generate-commit-message/blob/main/art/home.png" height="500">
----
+
+## <img src="https://github.com/derricknjeru/generate-commit-message/blob/main/art/home.png" height="500">
 
 ## Installation
 
@@ -19,6 +19,7 @@
    ```sh
    echo "OPENAI_API_KEY=<your token>" >> .env
    ```
+
 ## Usage
 
 1. Generating commit messages:
@@ -26,6 +27,7 @@
    ```sh
    g-commit -g
    ```
+
 2. Staging changes
 
    ```sh
