@@ -1,5 +1,7 @@
 # generate-commit
-<
+<img src="https://github.com/derricknjeru/generate-commit-message/blob/main/art/home.png" height="500">
+---
+
 ## Installation
 
 1. Install the CLI:
