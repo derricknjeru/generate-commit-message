@@ -2,7 +2,7 @@
   "name": "generate-commit-message",
   "version": "1.0.6",
   "description": "cli tool for generating commit messages",
-  "homepage": "https://github.com/owner/project#readme",
+  "homepage": "https://github.com/derricknjeru/generate-commit-message#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/derricknjeru/generate-commit-message.git"
